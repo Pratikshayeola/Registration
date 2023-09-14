@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "363818dc-a1f0-44e0-8180-ee4ac8eb0b8f",
+		"name": "Event Registeration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generate token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test_user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/auth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send OTP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test\",\r\n    \"city\":\"Pune\",\r\n    \"school\":\"Govt school\",\r\n    \"state\":\"MH\",\r\n    \"email\":\"test@gmail.com\",\r\n    \"grade\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/otp/send",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/otp/verify?email=test@gmail.com&code=0237",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"verify"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@gmail.com"
+						},
+						{
+							"key": "code",
+							"value": "0237"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user for event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/eventRegisteration/register?userId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"eventRegisteration",
+						"register"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Registered events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiZHZlZ2EiLCJleHAiOjE2OTQ1Mjg3MjUsImlhdCI6MTY5NDUyNTEyNSwic2NvcGUiOiJSRUFEIn0.rpH8TGA7U9tAK8_MAA0yAwX1YMcQdS5I3lpt7UJIplchWc9JvtadmGwtnpULTMIS0AlvXddF0I8Atsr7Sj0hJQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/eventRegisteration/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"eventRegisteration",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
